@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+/Users/lemes/Documents/Evangelist/.metadata/.plugins/org.eclipse.jdt.core
+1672399616.index
+1720546875.index
