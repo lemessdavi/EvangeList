@@ -95,6 +95,8 @@ public class CadastroAnime extends JFrame {
 		JButton btnNewButton_1 = new JButton("Adicionar Personagem");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CadastroPersonagem cadasPers = new CadastroPersonagem();
+				cadasPers.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(255, 114, 170, 29);
