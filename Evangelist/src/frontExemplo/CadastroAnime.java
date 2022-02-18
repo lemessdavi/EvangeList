@@ -6,8 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Animes.Anime;
+import Usuario.Usuario;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
@@ -16,8 +21,8 @@ import java.awt.event.ActionEvent;
 public class CadastroAnime extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textFieldNome;
+	private JTextField textFieldAvaliacao;
 
 	/**
 	 * Launch the application.
@@ -26,8 +31,7 @@ public class CadastroAnime extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastroAnime frame = new CadastroAnime();
-					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -38,8 +42,8 @@ public class CadastroAnime extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CadastroAnime() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public CadastroAnime(Usuario usuario) {
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -50,72 +54,81 @@ public class CadastroAnime extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(16, 36, 130, 26);
-		panel.add(textField);
-		textField.setColumns(10);
+		textFieldNome = new JTextField();
+		textFieldNome.setBounds(16, 36, 130, 26);
+		panel.add(textFieldNome);
+		textFieldNome.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Nome:");
-		lblNewLabel.setBounds(16, 20, 61, 16);
-		panel.add(lblNewLabel);
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setBounds(16, 20, 61, 16);
+		panel.add(lblNome);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(314, 36, 33, 26);
-		panel.add(textField_1);
+		textFieldAvaliacao = new JTextField();
+		textFieldAvaliacao.setColumns(10);
+		textFieldAvaliacao.setBounds(314, 36, 33, 26);
+		panel.add(textFieldAvaliacao);
 		
 		JLabel lblAvaliacao = new JLabel("Avaliacao:");
-		lblAvaliacao.setBounds(304, 20, 79, 16);
+		lblAvaliacao.setBounds(312, 20, 79, 16);
 		panel.add(lblAvaliacao);
 		
-		JButton btnNewButton = new JButton("Adicionar Anime");
-		btnNewButton.setBounds(83, 227, 148, 29);
-		panel.add(btnNewButton);
+	
 		
-		JLabel lblSituao = new JLabel("Situação");
-		lblSituao.setBounds(16, 86, 79, 16);
-		panel.add(lblSituao);
+		JLabel lblSituacao = new JLabel("Situação");
+		lblSituacao.setBounds(16, 99, 79, 16);
+		panel.add(lblSituacao);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Quero Assistir");
-		rdbtnNewRadioButton.setBounds(16, 114, 130, 16);
-		panel.add(rdbtnNewRadioButton);
 		
-		JRadioButton rdbtnAssistindo = new JRadioButton("Assistindo");
-		rdbtnAssistindo.setBounds(16, 142, 130, 16);
-		panel.add(rdbtnAssistindo);
+		// boxes
 		
-		JRadioButton rdbtnNewRadioButton_1_1 = new JRadioButton("Finalizado");
-		rdbtnNewRadioButton_1_1.setBounds(16, 170, 130, 16);
-		panel.add(rdbtnNewRadioButton_1_1);
+		JRadioButton checkQueroAssistir = new JRadioButton("Quero Assistir");
+		checkQueroAssistir.setBounds(16, 127, 130, 16);
+		panel.add(checkQueroAssistir);
+		
+		JRadioButton checkAssistindo = new JRadioButton("Assistindo");
+		checkAssistindo.setBounds(16, 155, 130, 16);
+		panel.add(checkAssistindo);
+		
+		JRadioButton checkFinalizado = new JRadioButton("Finalizado");
+		checkFinalizado.setBounds(16, 183, 130, 16);
+		panel.add(checkFinalizado);
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(checkFinalizado);
+		group.add(checkQueroAssistir);
+		group.add(checkAssistindo);
+		
+		
+		
+		
+		// boxes
 		
 		JLabel lblAvaliacao_1 = new JLabel("/ 5");
 		lblAvaliacao_1.setBounds(359, 41, 79, 16);
 		panel.add(lblAvaliacao_1);
 		
-		JButton btnNewButton_1 = new JButton("Adicionar Personagem");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnAddPersonagem = new JButton("Adicionar Personagem");
+		btnAddPersonagem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CadastroPersonagem cadasPers = new CadastroPersonagem();
 				cadasPers.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(255, 114, 170, 29);
-		panel.add(btnNewButton_1);
+		btnAddPersonagem.setBounds(255, 123, 170, 29);
+		panel.add(btnAddPersonagem);
 		
 		JLabel lblCadastrarUmPersonagem = new JLabel("Cadastrar um Personagem?");
-		lblCadastrarUmPersonagem.setBounds(255, 90, 179, 29);
+		lblCadastrarUmPersonagem.setBounds(255, 99, 179, 29);
 		panel.add(lblCadastrarUmPersonagem);
 		
-		JLabel lblAdicionarUmEpisodio = new JLabel("Adicionar um Episodio?");
-		lblAdicionarUmEpisodio.setBounds(265, 157, 154, 29);
-		panel.add(lblAdicionarUmEpisodio);
-		
-		JButton btnNewButton_1_1 = new JButton("Adicionar Episodio");
-		btnNewButton_1_1.addActionListener(new ActionListener() {
+		JButton btnAddAnime = new JButton("Adicionar Anime");
+		btnAddAnime.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Anime anime = new Anime(textFieldNome.getText(), );
+				
 			}
 		});
-		btnNewButton_1_1.setBounds(255, 179, 170, 29);
-		panel.add(btnNewButton_1_1);
+		btnAddAnime.setBounds(264, 211, 148, 29);
+		panel.add(btnAddAnime);
 	}
 }

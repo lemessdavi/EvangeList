@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 public class Anime {
 	private String nome;
-	private ArrayList<Episodio> episodios;
-	private ArrayList<Personagem> personagens;
+	public ArrayList<Personagem> personagens;
 	private double avaliacao;
 	private int situacao; // 0- quero assistir | 1- assitindo | 2- finalizado
 	
@@ -15,9 +14,6 @@ public class Anime {
 		this.avaliacao = avaliacao;
 	}
 	
-	public void addEpisodio(Episodio episodio){
-		episodios.add(episodio);
-	}
 	
 	public void addPersonagem(Personagem personagem){
 		personagens.add(personagem);
@@ -27,9 +23,6 @@ public class Anime {
 		return nome;
 	}
 	
-	public ArrayList<Episodio> getEpisodios() {
-		return episodios;
-	}
 	
 	public ArrayList<Personagem> getPersonagens() {
 		return personagens;

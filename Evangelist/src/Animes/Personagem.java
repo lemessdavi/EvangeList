@@ -3,13 +3,13 @@ package Animes;
 public class Personagem {
 	private String nome;
 	private double avaliacao;
+	private Anime animeOrigem;
 	
-	public Personagem(String nome) {
-		this.nome = nome;
-	}
-	public Personagem(String nome, double avaliacao) {
+
+	public Personagem(String nome, double avaliacao, Anime animeOrigem) {
 		this.nome = nome;
 		this.avaliacao = avaliacao;
+		this.animeOrigem = animeOrigem;
 	}
 	
 	public double getAvaliacao() {
