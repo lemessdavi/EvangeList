@@ -11,6 +11,11 @@ public class Personagem {
 		this.avaliacao = avaliacao;
 		this.animeOrigem = animeOrigem;
 	}
+	public void editPersonagem(String nome, double avaliacao, Anime animeOrigem) {
+		this.nome = nome;
+		this.avaliacao = avaliacao;
+		this.animeOrigem = animeOrigem;
+	}
 	
 	public double getAvaliacao() {
 		return avaliacao;
@@ -24,5 +29,10 @@ public class Personagem {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	@Override
+	public String toString() {
+		return nome +  "       Avaliação: " + avaliacao+"        Anime de Origem: " +animeOrigem;
 	}
 }

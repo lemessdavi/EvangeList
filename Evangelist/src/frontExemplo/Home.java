@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Animes.Anime;
+import Animes.Personagem;
 import Usuario.Usuario;
 
 import javax.swing.JList;
@@ -47,7 +49,7 @@ public class Home extends JFrame {
 		Usuario usuario = new Usuario();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1280,720);
+		setSize(950,720);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -69,6 +71,13 @@ public class Home extends JFrame {
 		JButton btnAddPersonagem = new JButton("Adicionar Personagem");
 		btnAddPersonagem.setBounds(469, 623, 176, 29);
 		contentPane.add(btnAddPersonagem);
+		btnAddPersonagem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CadastroPersonagem cadasPers = new CadastroPersonagem();
+				cadasPers.setVisible(true);
+			}
+		});
+			
 		
 		JButton btnAddAnime = new JButton("Adicionar Anime");
 		btnAddAnime.addActionListener(new ActionListener() {
@@ -96,10 +105,23 @@ public class Home extends JFrame {
 		contentPane.add(lblNewLabel_1_1);
 		
 		JButton btnEditarAnime = new JButton("Editar Anime");
+		btnEditarAnime.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditAnime telaEditAnime = new EditAnime((Anime) listAnimes.getSelectedValue());
+				telaEditAnime.show();
+			}
+		});
 		btnEditarAnime.setBounds(246, 626, 176, 29);
 		contentPane.add(btnEditarAnime);
 		
+		
 		JButton btnEditarPersonagem = new JButton("Editar Personagem");
+		btnEditarPersonagem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditPersonagem telaEditPers = new EditPersonagem((Personagem) listPersonagens.getSelectedValue());
+				telaEditPers.show();
+			}
+		});
 		btnEditarPersonagem.setBounds(667, 623, 176, 29);
 		contentPane.add(btnEditarPersonagem);
 	}

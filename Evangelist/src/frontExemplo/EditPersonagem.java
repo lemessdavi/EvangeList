@@ -2,25 +2,21 @@ package frontExemplo;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Animes.Anime;
 import Animes.Personagem;
-import Usuario.Usuario;
 
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.ComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JList;
-import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class CadastroPersonagem extends JFrame {
+public class EditPersonagem extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
@@ -30,13 +26,10 @@ public class CadastroPersonagem extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastroPersonagem frame = new CadastroPersonagem();
-					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,7 +40,7 @@ public class CadastroPersonagem extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CadastroPersonagem() {
+	public EditPersonagem(Personagem personagem) {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -59,6 +52,7 @@ public class CadastroPersonagem extends JFrame {
 		textFieldNome.setBounds(17, 52, 130, 26);
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
+		textFieldNome.setText(personagem.getNome());
 		
 		JLabel lblNewLabel = new JLabel("Nome:");
 		lblNewLabel.setBounds(19, 34, 61, 16);
@@ -72,6 +66,7 @@ public class CadastroPersonagem extends JFrame {
 		textFieldAvaliacao.setColumns(10);
 		textFieldAvaliacao.setBounds(299, 50, 33, 26);
 		contentPane.add(textFieldAvaliacao);
+		textFieldAvaliacao.setText(String.valueOf(personagem.getAvaliacao()));
 		
 		JLabel lblAvaliacao_1 = new JLabel("/ 5");
 		lblAvaliacao_1.setBounds(344, 55, 79, 16);
@@ -92,9 +87,7 @@ public class CadastroPersonagem extends JFrame {
 		btnAddPersonagem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Anime animeSelecionado = (Anime) comboBoxAnime.getSelectedItem();
-				Personagem pers = new Personagem(textFieldNome.getText(),Double.parseDouble(textFieldAvaliacao.getText()),animeSelecionado);
-				animeSelecionado.personagens.add(pers);
-				Home.listPersonagensModel.addElement(pers);
+				personagem.editPersonagem(textFieldNome.getText(),Double.parseDouble(textFieldAvaliacao.getText()),animeSelecionado);
 				dispose();
 				
 			}
@@ -102,4 +95,5 @@ public class CadastroPersonagem extends JFrame {
 		btnAddPersonagem.setBounds(249, 183, 174, 29);
 		contentPane.add(btnAddPersonagem);
 	}
+
 }

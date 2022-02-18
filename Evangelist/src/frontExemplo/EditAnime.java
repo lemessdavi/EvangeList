@@ -2,29 +2,30 @@ package frontExemplo;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Enumeration;
+import java.util.Iterator;
 
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Animes.Anime;
 import Usuario.Usuario;
 
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
-import javax.swing.JButton;
-import javax.swing.JRadioButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class CadastroAnime extends JFrame {
+public class EditAnime extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
 	private JTextField textFieldAvaliacao;
-
 	/**
 	 * Launch the application.
 	 */
@@ -32,7 +33,6 @@ public class CadastroAnime extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,7 +43,7 @@ public class CadastroAnime extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CadastroAnime(Usuario usuario) {
+	public EditAnime(Anime animeSelecioando) {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -59,6 +59,7 @@ public class CadastroAnime extends JFrame {
 		textFieldNome.setBounds(16, 36, 130, 26);
 		panel.add(textFieldNome);
 		textFieldNome.setColumns(10);
+		textFieldNome.setText(animeSelecioando.getNome());
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(16, 20, 61, 16);
@@ -68,6 +69,7 @@ public class CadastroAnime extends JFrame {
 		textFieldAvaliacao.setColumns(10);
 		textFieldAvaliacao.setBounds(314, 36, 33, 26);
 		panel.add(textFieldAvaliacao);
+		textFieldAvaliacao.setText(String.valueOf(animeSelecioando.getAvaliacao()));
 		
 		JLabel lblAvaliacao = new JLabel("Avaliacao:");
 		lblAvaliacao.setBounds(312, 20, 79, 16);
@@ -86,6 +88,7 @@ public class CadastroAnime extends JFrame {
 		checkQueroAssistir.setBounds(16, 127, 130, 16);
 		panel.add(checkQueroAssistir);
 		checkQueroAssistir.setActionCommand("Quero Assistir");
+		
 		
 		JRadioButton checkAssistindo = new JRadioButton("Assistindo");
 		checkAssistindo.setBounds(16, 155, 130, 16);
@@ -106,6 +109,16 @@ public class CadastroAnime extends JFrame {
 		
 		
 		
+		 for (Enumeration<AbstractButton> buttons = group.getElements(); buttons.hasMoreElements();) {
+	            AbstractButton button = buttons.nextElement();
+
+	            if (button.getText() == animeSelecioando.getSituacao()) {
+	                button.setSelected(true);
+	            }
+	        }
+
+		
+		
 		
 		// boxes
 		
@@ -118,10 +131,8 @@ public class CadastroAnime extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				String selecionado = group.getSelection().getActionCommand();
-				Anime anime = new Anime(textFieldNome.getText(), selecionado ,Double.parseDouble(textFieldAvaliacao.getText()) );
-				Usuario.listAnimes.add(anime);
-				Home.listAnimesModel.addElement(anime);
-				dispose();
+				animeSelecioando.editAnime(textFieldNome.getText(), selecionado ,Double.parseDouble(textFieldAvaliacao.getText()) );
+				dispose();;
 				CadastroPersonagem cadasPers = new CadastroPersonagem();
 				cadasPers.setVisible(true);
 			}
@@ -133,17 +144,16 @@ public class CadastroAnime extends JFrame {
 		lblCadastrarUmPersonagem.setBounds(255, 99, 179, 29);
 		panel.add(lblCadastrarUmPersonagem);
 		
-		JButton btnAddAnime = new JButton("Adicionar Anime");
+		JButton btnAddAnime = new JButton("Salvar Alterações");
 		btnAddAnime.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String selecionado = group.getSelection().getActionCommand();
-				Anime anime = new Anime(textFieldNome.getText(), selecionado ,Double.parseDouble(textFieldAvaliacao.getText()) );
-				Usuario.listAnimes.add(anime);
-				Home.listAnimesModel.addElement(anime);
+				animeSelecioando.editAnime(textFieldNome.getText(), selecionado ,Double.parseDouble(textFieldAvaliacao.getText()) );
 				dispose();
 			}
 		});
 		btnAddAnime.setBounds(264, 211, 148, 29);
 		panel.add(btnAddAnime);
 	}
+
 }

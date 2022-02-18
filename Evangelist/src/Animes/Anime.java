@@ -4,14 +4,23 @@ import java.util.ArrayList;
 
 public class Anime {
 	private String nome;
-	public ArrayList<Personagem> personagens;
+	public static ArrayList<Personagem> personagens;
 	private double avaliacao;
-	private int situacao; // 0- quero assistir | 1- assitindo | 2- finalizado
+	private String situacao; // 0- quero assistir | 1- assitindo | 2- finalizado
+	//private String situacaoOpceos[] = {"Quero Assistir", "Assitindo", "Finalizado"};
 	
-	public Anime(String nome, int situacao, double avaliacao ) {
+	public Anime(String nome, String situacao, double avaliacao ) {
 		this.nome = nome;
 		this.situacao = situacao;
 		this.avaliacao = avaliacao;
+		personagens = new ArrayList();
+	}
+	
+	public void editAnime(String nome, String situacao, double avaliacao ) {
+		this.nome = nome;
+		this.situacao = situacao;
+		this.avaliacao = avaliacao;
+
 	}
 	
 	
@@ -33,7 +42,7 @@ public class Anime {
 	}
 	
 	
-	public int getSituacao() {
+	public String getSituacao() {
 		return situacao;
 	}
 	
@@ -41,11 +50,15 @@ public class Anime {
 		this.avaliacao = avaliacao;
 	}
 	
-	public void mudaSituacao(int situacao) {
+	public void mudaSituacao(String situacao) {
 		this.situacao = situacao;
 	}
 	
 	public void mudaNome(String nome) {
 		this.nome = nome;
+	}
+	@Override
+	public String toString() {
+		return nome + "           Avaliação: " + avaliacao;
 	}
 }
